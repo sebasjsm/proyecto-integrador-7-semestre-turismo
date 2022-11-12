@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Listado de Paises</title>
+</h:head>
+
+<h:body>
+    <ui:composition template ="./WEB-INF/plantillas/principal.xhtml">
+        <ui:define name="content">
+
+            <h:form id="formdatos">
+
+                <p:dataTable id="tbldatos" value="#{paisBean.listar()}" var="pais">
+                    <p:column headerText="IDENTIFICACION">
+                        <h:outputText value="#{pais.codigo_postal}"/>
+                    </p:column>
+                    <p:column headerText="#{msgs['tradNombre']}">
+                        <h:outputText value="#{pais.nombre}"/>
+                    </p:column>
+                    <p:column headerText="capital">
+                        <h:outputText value="#{pais.capital}"/>
+                    </p:column>
+                    <p:column headerText="continente">
+                        <h:outputText value="#{pais.continente}"/>
+                    </p:column>
+                    <p:column headerText="Referencia iso">
+                        <h:outputText value="#{pais.iso}"/>
+                    </p:column>
+                    <p:column headerText="#{msgs['tradEliminar']}">
+                        <p:commandButton styleClass="ui-button-danger"
+                                         value="#{msgs['tradEliminar']}"
+                                         action="#{paisBean.eliminarPais(pais.codigo_postal)}"
+                                         update="formdatos:tbldatos">
+                            <p:confirm header="#{msgs['tradEliminar']}" message="Esta seguro de lo que va a hacer??"></p:confirm>
+                        </p:commandButton>
+                    </p:column>
+                    <p:column headerText="#{msgs['tradActualizar']}">
+                        <p:commandButton styleClass="ui-button-primaryr"
+                                         value="actualizar pais"
+                                         action="#{paisBean.irActualizar(pais.codigo_postal)}"
+                                         update="formdatos:tbldatos">
+                        </p:commandButton>
+                    </p:column>
+
+                </p:dataTable>
+
+                <p:commandButton styleClass="ui-button-primary" value="nuevo pais" action="#{paisBean.irCrear()}"></p:commandButton>
+
+                <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" width=" 350">
+                    <p:commandButton value="NO" type="button" styleClass="ui-confirmdialog-no ui-button-flat"></p:commandButton>
+                    <p:commandButton value="SISAS!" type="button" styleClass="ui-confirmdialog-yes"></p:commandButton>
+                </p:confirmDialog>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>

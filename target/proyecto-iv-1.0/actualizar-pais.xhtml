@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Actualizar Pais</title>
+</h:head>
+
+<h:body>
+    <ui:composition template ="./WEB-INF/plantillas/principal.xhtml">
+        <ui:define name="content">
+            <h2>actualizar pais</h2>
+            <p:messages id="mensajes" showDetails="false" autoUpdate="true" />
+            <h:form id="formdatos3">
+                <div class="mb-3">
+                    <label for="id" class="form-label">IDENTIFICACION (codigo postal)</label>
+                    <h:inputText class="form-control" id="id" value="#{paisBean.pais.codigo_postal}"/>
+                </div>
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">NOMBRE DEL PAIS</label>
+                    <h:inputText class="form-control" id="nombre" value="#{paisBean.pais.nombre}"/>
+                </div>
+                <div class="mb-3">
+                    <label for="capital" class="form-label">CAPITAL</label>
+                    <h:inputText class="form-control" id="capital" value="#{paisBean.pais.capital}"/>
+                </div>
+                <div class="mb-3">
+                    <label for="continente" class="form-label">CONTINENTE</label>
+                    <h:inputText class="form-control" id="continente" value="#{paisBean.pais.continente}"/>
+                </div>
+                <div class="mb-3">
+                    <label for="iso" class="form-label">ISO (identificaion abreviada)</label>
+                    <h:inputText class="form-control" id="iso" value="#{paisBean.pais.iso}"/>
+                </div>
+                <div class="mb-3">
+                    <h:commandButton value="Actualizar" action="#{paisBean.actualizarPais()}"/>
+                </div>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>

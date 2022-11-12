@@ -1,0 +1,16 @@
+co\uceva\edu\base\beans\HolaMundoBean.class
+co\uceva\edu\base\beans\UsuarioBean.class
+co\uceva\edu\base\models\Pais.class
+co\uceva\edu\base\services\PaisService.class
+co\uceva\edu\base\util\ConexionBaseDatos.class
+co\uceva\edu\base\beans\PaisBean.class
+co\uceva\edu\base\services\EmpleadoService.class
+co\uceva\edu\base\models\Empleado.class
+co\uceva\edu\base\repositories\EmpleadoRepository.class
+co\uceva\edu\base\services\UsuarioService.class
+co\uceva\edu\base\repositories\UsuarioRepository.class
+beans\configuracion\ConfigrationJSF.class
+co\uceva\edu\base\models\Usuario.class
+co\uceva\edu\base\repositories\PaisRepository.class
+co\uceva\edu\base\beans\EmpleadoBean.class
+co\uceva\edu\base\beans\HiWorldBean.class

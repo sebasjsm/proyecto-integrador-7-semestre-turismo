@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>VIAJES Y TURISMO S.A para parejas</title>
+    <link rel="stylesheet" href="resources/css/design.css"/>
+    <link href="https://fonts.cdnfonts.com/css/miami" rel="stylesheet"/>
+    <link href="https://fonts.cdnfonts.com/css/engender-mod-font" rel="stylesheet"/>
+</h:head>
+<h:body class="cuerpo">
+    <main>
+        <header id="up">
+            <nav >
+                <ul class="menu-principal">
+                    <li class="menu-principal__item"><a href="index.xhtml">INICIO</a></li>
+                    <li class="menu-principal__item"><a href="acceder.xhtml">ACCEDER</a></li>
+                    <li class="menu-principal__item"><a href="acerca.xhtml">INFORMACIÓN</a></li>
+                </ul>
+            </nav>
+        </header>
+        <div class="bienvenida" id="parejapack">
+        <h1 class="tituloprincipal" id="sup">PAQUETES PARA PAREJAS</h1>
+    </div>
+        <div class="selectores">
+        <h1 class="tituloprincipal">Elija una de nuestras opciones de viaje</h1>
+        <div class="contenedorpacks" id="paquetecontenedor">
+            
+            <div class="packcompra"  id="0001" >
+                <p>En este paquete encontrará todo lo que necesitan 
+                    aquellas parejas que son tranquilas y relajadas.<br/><br/>
+                    Puntos de Visita: 2,3,4,5,8,12,15.<br/>
+                    Duracion: 6 dias y 7 noches.<br/>
+                    Almuerzos: si.<br/>
+                    Desayunos: si.<br/>
+                    Estado: activo.<br/>
+                    Costo: $ 1'825,000.<br/>
+                </p>
+                <div>
+                    <button onclick="seleccion('07_06_07_01_01')" >COMPRA DIRECTA</button>
+                    <button disabled="disabled">RESERVAR</button>
+                    <button onclick="amortizacion(1825000,6)">COMPRAR A CREDITO (6 meses)</button>
+                </div>
+            </div>
+            <div class="packcompra" id="0002">
+                <p>Paquete lleno de diversion para las parejas que les
+                     gusta la emocion y con mucha energía.<br/><br/>
+                    Puntos de Visita: 1,6,7,11,13,14.<br/>
+                    Duracion: 4 dias y 3 noches.<br/>
+                    Almuerzos: si.<br/>
+                    Desayunos: si.<br/>
+                    Estado: activo.<br/>
+                    Costo: $ 1'095,000.<br/>
+                </p>
+                <div>
+                    <button onclick="seleccion('06_04_03_01_01')" >COMPRA DIRECTA</button>
+                    <button disabled="disabled">RESERVAR</button>
+                    <button onclick="amortizacion(1095000,12)">COMPRAR A CREDITO (12 meses)</button>
+                </div>
+                
+            </div>
+            <div class="packcompra" >
+                <p>Diversion con el agua, claro que si, este paquete es justo eso!.<br/><br/>
+                    Puntos de Visita: 2,4,5,11,16.<br/>
+                    Duracion: 3 dias y 2 noches.<br/>
+                    Almuerzos: No.<br/>
+                    Desayunos: si.<br/>
+                    Estado: activo.<br/>
+                    Costo: $  805,000.<br/>
+                </p>
+                <div>
+                    <button onclick="seleccion('05_03_02_00_01')" >COMPRA DIRECTA</button>
+                    <button  onclick="" disabled="disabled">RESERVAR</button>
+                    <button onclick="amortizacion(805000,18)">COMPRAR A CREDITO (1 año y medio)</button>
+                </div>
+            </div>
+            
+          
+        </div>
+    </div>
+
+    <div class="puntos">
+        <h2 class="tituloprincipal">¿que son los puntos de visita?</h2>
+        <p>Los puntos de visita se ubican en los paquetes como numeros,
+           cada uno de los cuales corresponde a una actividad que se va a realizar
+            en el paquete correspondiente. a continuacion se le presenta un listado de los mismos.</p>
+        <ol>
+            <li>caminatas por la zona</li>
+            <li>actividades acuaticas </li>
+            <li>juegos ludicos</li>
+            <li>piscinas</li>
+            <li>jacuzzy</li>
+            <li>escalada</li>
+            <li>aceso al ginmasio</li>
+            <li>bailes nocturnos</li>
+            <li>opera</li>
+            <li>cine</li>
+            <li>pesca deportiva</li>
+            <li>parque de atracciones</li>
+            <li>tiro con arco</li>
+            <li>caceria deportiva</li>
+            <li>masajes</li>
+            <li>baños de vapor</li>
+        </ol>
+    </div>
+
+        <div class="selectores">
+          <h2 class="tituloprincipal">SUGERENCIAS Y COMENTARIOS!</h2>
+          <form action="#" class="formulario">
+              <label for="nombre">Ingrese su nombre completo.<br/>
+                  <input type="text" id="nombre" placeholder="aqui el nombre de usuario..."/><br/>
+              </label>
+              <label for="correo">Ingrese un correo.<br/>
+                  <input type="email" id="correo" required="true" placeholder="aqui el correo..."/><br/>
+              </label>
+              <label for="comentario">Ingrese su comentario.<br/>
+                  <textarea id="comentario" rows="4" cols="20" placeholder="Escribe tu comentario"> </textarea><br/> <br/>
+                </label>
+              <label for="comentario">CALIFICA TU EXPERIENCIA!<br/>
+                <input type="radio" name="calificacion">Excelente</input>
+                <input type="radio" name="calificacion">Buena</input>
+                <input type="radio" name="calificacion">regular</input>
+                <input type="radio" name="calificacion">Mala</input>
+                <input type="radio" name="calificacion">Horrible</input>
+            </label><br/>
+              <input class="botonesimple" type="submit" value="Enviar" />
+          </form> 
+        </div>
+         
+<br/>
+<a class="menu-principal__item" href="#sup">ir arriba!</a>
+    </main>
+    <script src="resources/js/funcionalidades.js"></script>
+</h:body>
+</html>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Actualizar Usuario</title>
+</h:head>
+
+<h:body>
+    <ui:composition template ="./WEB-INF/plantillas/principal.xhtml">
+        <ui:define name="content">
+            <h2>actualizar Usuario</h2>
+            <p:messages id="mensajes" showDetails="false" autoUpdate="true" /> <!-- para lgin menajs-->
+            <h:form id="formdatos2">
+                <div class="mb-3">
+                    <label for="id" class="form-label">ID</label>
+                    <h:inputText class="form-control" id="id" value="#{usuarioBean.usuario.id}"/>
+                </div>
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <h:inputText class="form-control" id="nombre" value="#{usuarioBean.usuario.nombre}"/>
+                </div>
+                <div class="mb-3">
+                    <label for="departamento" class="form-label">Correo</label>
+                    <h:inputText class="form-control" id="correo" value="#{usuarioBean.usuario.correo}"/>
+                </div>
+                <div class="mb-3">
+                    <label for="salario" class="form-label">Contraseña</label>
+                    <h:inputText class="form-control" id="password" value="#{usuarioBean.usuario.password}"/>
+                </div>
+                <div class="mb-3">
+                    <h:commandButton value="Actualizar" action="#{usuarioBean.actualizarUsuario()}"/>
+                </div>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>

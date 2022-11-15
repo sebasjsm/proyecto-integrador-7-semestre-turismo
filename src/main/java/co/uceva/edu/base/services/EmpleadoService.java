@@ -1,5 +1,6 @@
 package co.uceva.edu.base.services;
 import co.uceva.edu.base.models.Empleado;
+import co.uceva.edu.base.models.Usuario;
 import co.uceva.edu.base.repositories.EmpleadoRepository;
 import java.util.List;
 
@@ -8,6 +9,10 @@ public class EmpleadoService {
 
     public EmpleadoService() {
         empleadoRepository = new EmpleadoRepository();
+    }
+
+    public Empleado autenticar(String correo, String password){
+        return empleadoRepository.autenticarEmpleado(correo,password);
     }
 
     public List<Empleado> listar (){

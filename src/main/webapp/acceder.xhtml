@@ -24,6 +24,8 @@
                     <li class="menu-principal__item"><a href="index.xhtml">INICIO</a></li>
                     <li class="menu-principal__item"><a href="acceder.xhtml">ACCEDER (0)</a></li>
                     <li class="menu-principal__item"><a href="acerca.xhtml">INFORMACIÓN</a></li>
+                    <li> <h:inputText size="10" value="#{usuarioBean.usuarioAutentico.nombre}" disabled="true" /> </li>
+                    <li> <h:form><h:commandButton action="#{usuarioBean.desautenticar()}" value="exit" ></h:commandButton></h:form></li>
                 </ul>
             </nav>
         </header>
@@ -33,64 +35,58 @@
 
             <div class="packacerca">
 
-            <form action="#" class="formulario">
-            <h1 class="tituloprincipal" id="sup">REGISTRESE!</h1>
-            <label for="nombre">Ingrese su nombre<br/>
-                <input type="text" id="nombre"  size="50px"/><br/>
-            </label>
-            <label for="apellido">Ingrese su apellido<br/>
-                <input type="text" id="apellido"  size="50px"/><br/>
-            </label>
-            <label for="fechaNacimiento">Ingrese su fecha de nacimiento<br/>
-                <input type="text" id="fechaNacimiento"  /><br/>
-            </label>
-            <label for="cedula">Ingrese su numero de cedula<br/>
-              <input type="text" id="cedula" /><br/>
-            </label>
-            <label for="correo">Ingrese un correo.<br/>
-                <input type="text" id="correo" size="50px"/><br/>
-            </label>
-            <label for="telefono">telefono de contacto<br/>
-                <input type="text" id="telefono" size="50px" /><br/>
-            </label>
-            <label for="otrousuario">otro usuario de registro<br/>
-                <input type="text" id="otrousuario" size="50px" /><br/>
-            </label>
-            <label for="otrotelefono">telefono de contacto de esta persona<br/>
-                <input type="text" id="otrotelefono" size="50px"  /><br/>
-            </label>
-            <label>Registrar Como Usuario Frecuente?<br/>
-            <select class="botonesimple" disabled="disabled">
-            <option>No</option>
-            <option>Si</option>
-            </select><br/>
-            </label>
-            <input class="botones" type="submit" value=" "  />
-        
-        </form>
+                <h:form id="formdatos2" styleClass="formulario">
+                    <h1 class="tituloprincipal">REGISTRESE!</h1>
 
-        <form action="#" class="formulario">
+                        <label for="id" class="form-label">Ingrese su identificacion</label><br/>
+                        <h:inputText class="form-control" id="id"  size="50" value="#{usuarioBean.usuario.id}"/><br/>
+
+                        <label for="nombre" class="form-label">Ingrese su Nombre</label><br/>
+                        <h:inputText class="form-control" id="nombre" size="50" value="#{usuarioBean.usuario.nombre}"/><br/>
+
+                        <label for="departamento" class="form-label">Ingrese su Correo</label><br/>
+                        <h:inputText class="form-control" id="departamento" size="50" value="#{usuarioBean.usuario.correo}"/><br/>
+
+                        <label for="nacimiento" class="form-label">ingrese su fecha de nacimiento</label><br/>
+                        <h:inputText class="form-control" id="nacimiento"  size="50" value="#{usuarioBean.usuario.nacimiento}"/><br/>
+
+                        <label for="telefono" class="form-label">ingrese su telefono</label><br/>
+                        <h:inputText class="form-control" id="telefono" size="50" value="#{usuarioBean.usuario.telefono}"/><br/>
+
+                        <label for="otroNombre" class="form-label">ingrese otro familiar de contacto</label><br/>
+                        <h:inputText class="form-control" id="otroNombre" size="50" value="#{usuarioBean.usuario.otroNombre}"/><br/>
+
+                        <label for="otroTelefono" class="form-label">ingrese el telefono de contacto familiar</label><br/>
+                        <h:inputText class="form-control" id="otroTelefono"  size="50" value="#{usuarioBean.usuario.otroTelefono}"/><br/><br/>
+
+                        <h:outputText styleClass="texto"  value="#{usuarioBean.warningMessage}"></h:outputText><br/><br/><br/><br/>
+
+                        <h:commandButton value=" " action="#{usuarioBean.crearUsuario2()}" styleClass="botones"/>
+
+                </h:form>
+
+        <h:form class="formulario">
+
             <h1 class="tituloprincipal">INGRESE!</h1>
-            <label for="nombre">Ingrese su nombre<br/>
-                <input type="text" name="nombre" size="50px"/><br/>
-            </label>
-            <label for="apellido">Ingrese su apellido<br/>
-                <input type="text" name="apellido"  size="50px"/><br/>
-            </label>
-            <label for="nacimiento">Ingrese su fecha de nacimiento<br/>
-                <input type="text" id="nacimiento"  /><br/>
-            </label>
-            <label for="cedulaing">Ingrese su numero de cedula<br/>
-                <input type="text" id="cedulaing" /><br/>
-            </label>
-            <label for="correoing">Ingrese un correo.<br/>
-                <input type="text" id="correoing" size="50px"/><br/>
-            </label>
-            <label for="telefonoing"/>telefono de contacto<br/>
-                <input type="text" id="telefonoing"  size="50px" /><br/>
 
-            <input class="botones" type="submit" value=" "  />
-        </form>
+            <label for="apellidox">Ingrese su identificacion</label><br/>
+            <h:inputText id="apellidox"  size="50" value="#{usuarioBean.usuario.id}"/><br/>
+
+            <label for="correoing">Ingrese un correo.</label><br/>
+            <h:inputText id="correoing" size="50" value="#{usuarioBean.usuario.correo}" /><br/>
+
+            <label for="nombrex">Ingrese su nombre </label><br/>
+            <h:inputText id="nombrex" size="50"  value="#{usuarioBean.usuario.nombre}" disabled="true"/><br/>
+
+            <label for="nacimientox">Ingrese su fecha de  nacimiento</label><br/>
+            <h:inputText id="nacimientox"  size="50" value="#{usuarioBean.usuario.nacimiento}" disabled="true"/><br/>
+
+            <label for="telefonoing"/>telefono de contacto<br/>
+            <h:inputText id="telefonoing"  size="50" value="#{usuarioBean.usuario.telefono}" disabled="true"/><br/><br/><br/><br/>
+
+            <h:commandButton class="botones" action="#{usuarioBean.autenticar()}" value=" " ></h:commandButton>
+
+        </h:form>
 
     </div>
         <div class="formulario">

@@ -8,7 +8,7 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
-    <title>Listado de Usuarios</title>
+    <title>Listado de paquetes</title>
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -19,60 +19,64 @@
 </h:head>
 
 <h:body>
-
     <header id="up">
         <nav >
             <ul class="menu-principal">
                 <li class="menu-principal__item"><a href="index.xhtml">INICIO</a></li>
-                <li class="menu-principal__item"><a href="listar-paquetes.xhtml">LISTAR PAQUETES</a></li>
+                <li class="menu-principal__item"><a href="listar-usuarios.xhtml">LISTAR USUARIOS</a></li>
                 <li class="menu-principal__item"><a href="acerca.xhtml">INFORMACIÓN</a></li>
                 <li> <h:inputText size="10" value="#{empleadoBean.empleadoAutentico.nombre}" disabled="true" /> </li>
                 <li> <h:form><h:commandButton action="#{empleadoBean.desautenticar()}" value="exit" ></h:commandButton></h:form></li>
             </ul>
         </nav>
     </header>
-    <h1  class="tituloprincipal" >CENTRO DE GESTION DE USUARIOS TURISMO S.A.</h1>
+        <h1  class="tituloprincipal" >CENTRO DE GESTION DE PAQUETES TURISMO S.A.</h1>
+            <h:form id="formdatos">
 
-            <h:form id="formdatos2">
-
-                <p:dataTable id="tbldatos2" value="#{usuarioBean.listarUsuario()}" var="usuario">
+                <p:dataTable id="tbldatos" value="#{packBean.listar()}" var="paquete">
                     <p:column headerText="ID">
-                        <h:outputText value="#{usuario.id}"/>
+                        <h:outputText value="#{paquete.id}"/>
                     </p:column>
-                    <p:column headerText="#{msgs['tradNombre']}">
-                        <h:outputText value="#{usuario.nombre}"/>
+                    <p:column headerText="DESCRIPCION">
+                        <h:outputText value="#{paquete.descripcion}"/>
                     </p:column>
-                    <p:column headerText="correo">
-                        <h:outputText value="#{usuario.correo}"/>
+                    <p:column headerText="PUNTOS DE VISITA">
+                        <h:outputText value="#{paquete.puntosVisita}"/>
                     </p:column>
-                    <p:column headerText="fecha de nacimiento">
-                        <h:outputText value="#{usuario.nacimiento}"/>
+                    <p:column headerText="COMIDAS INCLUIDAS">
+                        <h:outputText value="#{paquete.sN}"/>
                     </p:column>
-                    <p:column headerText="telefono">
-                        <h:outputText value="#{usuario.telefono}"/>
+                    <p:column headerText="DIAS">
+                        <h:outputText value="#{paquete.dias}"/>
                     </p:column>
-                    <p:column headerText="nombre alterno">
-                        <h:outputText value="#{usuario.otroNombre}"/>
+                    <p:column headerText="NOCHES">
+                        <h:outputText value="#{paquete.noches}"/>
                     </p:column>
-                    <p:column headerText="telefono alterno">
-                        <h:outputText value="#{usuario.otroTelefono}"/>
+                    <p:column headerText="PRECIO">
+                        <h:outputText value="#{paquete.precio}"/>
                     </p:column>
+                    <p:column headerText="TIPO">
+                        <h:outputText value="#{paquete.tipo}"/>
+                    </p:column>
+
                     <p:column headerText="#{msgs['tradCentroAcciones']}">
                         <p:commandButton styleClass="ui-button-danger"
                                          value="#{msgs['tradEliminar']}"
-                                         action="#{usuarioBean.eliminarUsuario(usuario.id)}"
-                                         update="formdatos2:tbldatos2">
+                                         action="#{packBean.eliminarPack(paquete.id)}"
+                                         update="formdatos:tbldatos">
                             <p:confirm header="#{msgs['tradEliminar']}" message="Esta seguro de lo que va a hacer??"></p:confirm>
                         </p:commandButton>
                         <p:commandButton styleClass="ui-button-primaryr"
-                                         value="actualizar info del usuario"
-                                         action="#{usuarioBean.irActualizarUsuario(usuario.id)}"
-                                         update="formdatos2:tbldatos2">
+                                         value="#{msgs['tradActualizar']}"
+                                         action="#{packBean.irActualizar(paquete.id)}"
+                                         update="formdatos:tbldatos">
                         </p:commandButton>
                     </p:column>
+
+
                 </p:dataTable>
 
-                <p:commandButton styleClass="ui-button-primary" value="añadir manualmente" action="#{usuarioBean.irCrear()}"></p:commandButton>
+                <p:commandButton styleClass="ui-button-primary" value="nuevo paquete" action="#{packBean.irCrear()}"></p:commandButton>
 
                 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" width=" 350">
                     <p:commandButton value="NO" type="button" styleClass="ui-confirmdialog-no ui-button-flat"></p:commandButton>
@@ -80,5 +84,7 @@
                 </p:confirmDialog>
 
             </h:form>
+
 </h:body>
+<a href="#sup">arriba!</a>
 </html>

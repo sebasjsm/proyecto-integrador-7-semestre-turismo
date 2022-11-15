@@ -24,6 +24,8 @@
                     <li class="menu-principal__item"><a href="index.xhtml">INICIO</a></li>
                     <li class="menu-principal__item"><a href="acceder.xhtml">ACCEDER</a></li>
                     <li class="menu-principal__item"><a href="acerca.xhtml">INFORMACIÓN</a></li>
+                    <li> <h:inputText size="10" value="#{usuarioBean.usuarioAutentico.nombre}" disabled="true" /> </li>
+                    <li> <h:form><h:commandButton action="#{usuarioBean.desautenticar()}" value="exit" ></h:commandButton></h:form></li>
                 </ul>
             </nav>
         </header>
@@ -33,55 +35,59 @@
         <div class="selectores">
         <h1 class="tituloprincipal">Elija una de nuestras opciones de viaje</h1>
         <div class="contenedorpacks" id="paquetecontenedor">
-            
-            <div class="packcompra"  id="0001" >
-                <p>En este paquete podra encontrar actividades diseñadas para
-                    que sus hijos queden completamente sin energias!<br/><br/>
-                    Puntos de Visita: 2,3,12,13.<br/>
-                    Duracion: 2 dias y 2 noches.<br/>
-                    Almuerzos: si.<br/>
-                    Desayunos: si.<br/>
-                    Estado: activo.<br/>
-                    Costo: $ 675.000.<br/>
-                </p>
-                <div>
-                    <button onclick="seleccion('04_02_02_01_01')" >COMPRA DIRECTA</button>
-                    <button disabled="disabled">RESERVAR</button>
-                    <button onclick="amortizacion(675000,6)">COMPRAR A CREDITO (6 meses)</button>
-                </div>
-            </div>
-            <div class="packcompra" id="0002">
-                <p>Pauqte diseñado para realizar
-                    campamentos y dormir al aire libre<br/><br/>
-                    Puntos de Visita: 1,3,6.<br/>
-                    Duracion: 2 dias y 3 noches.<br/>
-                    Almuerzos: si.<br/>
-                    Desayunos: si.<br/>
-                    Estado: activo.<br/>
-                    Costo: $ 745000.<br/>
-                </p>
-                <div>
-                    <button onclick="seleccion('03_02_03_01_01')" >COMPRA DIRECTA</button>
-                    <button disabled="disabled">RESERVAR</button>
-                    <button onclick="amortizacion(745000,12)">COMPRAR A CREDITO (12 meses)</button>
-                </div>
-                
-            </div>
-            <div class="packcompra" >
-                <p>Un paquete perfecto para enseñar a sus hijos la diversion en el agua.<br/><br/>
-                    Puntos de Visita: 2,4,5,11,16.<br/>
-                    Duracion: 4 dias y 3 noches.<br/>
-                    Almuerzos: Si.<br/>
-                    Desayunos: si.<br/>
-                    Estado: activo.<br/>
-                    Costo: $  1'045.000.<br/>
-                </p>
-                <div>
-                    <button onclick="seleccion('05_04_03_01_01')" >COMPRA DIRECTA</button>
-                    <button  onclick="" disabled="disabled">RESERVAR</button>
-                    <button onclick="amortizacion(1045000,18)">COMPRAR A CREDITO (1 año y medio)</button>
-                </div>
-            </div>
+
+            <h:form id="formdatos">
+                <p:dataTable id="tbldatos" value="#{packBean.listarXTipo('familiar')}" var="paquete">
+                    <p:column headerText="DESCRIPCION">
+                        <h:outputText value="#{paquete.descripcion}"/>
+                    </p:column>
+                    <p:column headerText="PUNTOS DE VISITA">
+                        <h:outputText value="#{paquete.puntosVisita}"/>
+                    </p:column>
+                    <p:column headerText="COMIDAS INCLUIDAS">
+                        <h:outputText value="#{paquete.sN}"/>
+                    </p:column>
+                    <p:column headerText="DIAS">
+                        <h:outputText value="#{paquete.dias}"/>
+                    </p:column>
+                    <p:column headerText="NOCHES">
+                        <h:outputText value="#{paquete.noches}"/>
+                    </p:column>
+                    <p:column headerText="PRECIO">
+                        <h:outputText value="#{paquete.precio}"/>
+                    </p:column>
+
+                    <p:column headerText="#{msgs['tradCentroAcciones']}">
+                        <p:commandButton styleClass="ui-button-danger"
+                                         value="comprar este paquete"
+                                         action="#{usuarioBean.comprarPack(paquete.id)}"
+                                         update="formdatos:tbldatos">
+                            <p:confirm header="comprar!" message="comprar este paquete?"></p:confirm>
+                        </p:commandButton>
+                        <br/>
+                        <p:commandButton styleClass="ui-button-primaryr"
+                                         value="comprar paquete a credito!"
+                                         action="#"
+                                         update="formdatos:tbldatos">
+                        </p:commandButton><br/>
+
+                        <p:commandButton onclick="amortizacion('#{paquete.precio}',18)"
+                                         value="detalles del paquete a credito (1 año y medio)"
+                                         styleClass="ui-button-outlined">
+                        </p:commandButton>
+
+
+                    </p:column>
+
+
+                </p:dataTable>
+
+
+                <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" width=" 350">
+                    <p:commandButton value="NO" type="button" styleClass="ui-confirmdialog-no ui-button-flat"></p:commandButton>
+                    <p:commandButton value="SISAS!" type="button" styleClass="ui-confirmdialog-yes"></p:commandButton>
+                </p:confirmDialog>
+            </h:form>
             
           
         </div>

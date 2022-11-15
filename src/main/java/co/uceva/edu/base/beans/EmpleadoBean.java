@@ -1,5 +1,6 @@
 package co.uceva.edu.base.beans;
 import co.uceva.edu.base.models.Empleado;
+import co.uceva.edu.base.models.Usuario;
 import co.uceva.edu.base.services.EmpleadoService;
 
 
@@ -17,11 +18,39 @@ import java.util.List;
 
 public class EmpleadoBean implements Serializable {
     EmpleadoService empleadoService;
-    Empleado empleado;
+    Empleado empleado,empleadoAutentico;
 
     public EmpleadoBean() {
         empleadoService = new EmpleadoService();
         empleado = new Empleado();
+        empleadoAutentico =new Empleado();
+    }
+
+    public String autenticar() {
+        System.out.println("autenticando...");
+        empleadoAutentico =  empleadoService.autenticar(empleado.getCorreo(),empleado.getPassword());
+        System.out.println(empleadoAutentico.getId() +" revisado " +empleadoAutentico.getNombre());
+
+        if("".equals(empleadoAutentico.getNombre()) || 0==empleadoAutentico.getId()){
+            FacesMessage mensaje = new FacesMessage(FacesMessage.SEVERITY_WARN,"Error Autenticando","Error en la autenticacion, verifique que los datos ingresados sean correctos");
+            FacesContext.getCurrentInstance().addMessage("",mensaje);
+            System.out.println("no se autentica");
+            return "";
+
+        }else{
+            FacesMessage mensaje= new FacesMessage(FacesMessage.SEVERITY_WARN,"Autenticado","Atenticado correctmente");
+            FacesContext.getCurrentInstance().addMessage("",mensaje);
+            //System.out.println("Autenticado Exitosamente, bienvenido "+usuario.getNombre());
+            System.out.println("si se autentica.");
+            return "listar-paquetes.xhtml?faces-redirect=true";
+            // return "listado-empleados.xhtml?faces-redirect=true";  TODO porque no funciona el redireccionamiento ni los faces messages?
+        }
+    }
+
+    public String desautenticar(){
+        empleado=new Empleado();
+        empleadoAutentico =new Empleado();
+        return "login.xhtml?faces-redirect=true";
     }
 
     public List<Empleado> listar() {
@@ -29,6 +58,7 @@ public class EmpleadoBean implements Serializable {
     }
 
     public String irCrear() {
+        empleado = new Empleado();
         return "crear-empleado.xhtml?faces-redirect=true";
     }
 
@@ -40,7 +70,9 @@ public class EmpleadoBean implements Serializable {
     public String crear(){
         if(empleadoService.crear(this.empleado)){
             System.out.println("Creado Exitosamente");
+            empleado=new Empleado();
             return "listar-empleados.xhtml?faces-redirect=true";
+
         }else{
             FacesMessage mensaje = new FacesMessage(FacesMessage.SEVERITY_WARN,"Error Guardando","Error Guardando");
             FacesContext.getCurrentInstance().addMessage("",mensaje);
@@ -76,4 +108,14 @@ public class EmpleadoBean implements Serializable {
     public void setEmpleado(Empleado empleado) {
         this.empleado = empleado;
     }
+
+    public Empleado getEmpleadoAutentico() {
+        return empleadoAutentico;
+    }
+
+    public void setEmpleadoAutentico(Empleado empleadoAutentico) {
+        this.empleadoAutentico = empleadoAutentico;
+    }
+
+
 }

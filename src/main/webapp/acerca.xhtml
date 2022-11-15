@@ -24,6 +24,8 @@
                     <li class="menu-principal__item"><a href="index.xhtml">INICIO</a></li>
                     <li class="menu-principal__item"><a href="acceder.xhtml">ACCEDER</a></li>
                     <li class="menu-principal__item"><a href="acerca.xhtml">INFORMACIÓN (0)</a></li>
+                    <li> <h:inputText size="10" value="#{usuarioBean.usuarioAutentico.nombre}" disabled="true" /> </li>
+                    <li> <h:form><h:commandButton action="#{usuarioBean.desautenticar()}" value="exit" ></h:commandButton></h:form></li>
                 </ul>
             </nav>
         </header>

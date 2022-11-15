@@ -22,6 +22,8 @@ public class EmpleadoRepository {
                 emp.setNombre(rs.getString("nombre"));
                 emp.setDepartamento(rs.getString("departamento"));
                 emp.setSalario(rs.getInt("salario"));
+                emp.setCorreo(rs.getString("correo"));
+                emp.setPassword(rs.getString("password"));
                 listadoEmpleado.add(emp);
             }
 
@@ -45,11 +47,14 @@ public class EmpleadoRepository {
         PreparedStatement pst =null;
         try{
             con = ConexionBaseDatos.getConnection();
-            pst = con.prepareStatement("INSERT INTO empleados (id,nombre,departamento,salario) VALUES(?,?,?,?)");
+            pst = con.prepareStatement("INSERT INTO empleados (id,nombre,departamento,salario,correo,password) VALUES(?,?,?,?,?,?)");
             pst.setInt(1,empleado.getId());
             pst.setString(2,empleado.getNombre());
             pst.setString(3,empleado.getDepartamento());
-            pst.setInt(4, (int) empleado.getSalario());
+            pst.setLong(4, empleado.getSalario());
+            pst.setString(5, empleado.getCorreo());
+            pst.setString(6, empleado.getPassword());
+
             pst.executeUpdate();
 
         }catch (Exception e){
@@ -135,11 +140,13 @@ public class EmpleadoRepository {
         PreparedStatement st =null;
         try {
             con = ConexionBaseDatos.getConnection();
-            st = con.prepareStatement("UPDATE empleados SET nombre=? , departamento=?, salario=? WHERE id=?");
+            st = con.prepareStatement("UPDATE empleados SET nombre=? , departamento=?, salario=?, correo=?, password=? WHERE id=?");
             st.setString(1, empleado.getNombre());
             st.setString(2, empleado.getDepartamento());
             st.setLong(3, empleado.getSalario());
-            st.setInt(4, empleado.getId());
+            st.setString(4, empleado.getCorreo());
+            st.setString(5, empleado.getPassword());
+            st.setInt(6, empleado.getId());
             st.executeUpdate();
 
         } catch (SQLException e) {
@@ -159,25 +166,23 @@ public class EmpleadoRepository {
         return true;
     }//fin de la funcion de actualizado
 
-    public Empleado autenticarEmpleado(int id, String nombre) {
+    public Empleado autenticarEmpleado(String correo, String password) {
         Connection con=null;
         PreparedStatement pst =null;
         ResultSet rs =null;
-        Empleado empleado =null;
+        Empleado empleado =new Empleado();
 
         try{
             con = ConexionBaseDatos.getConnection();
-            pst = con.prepareStatement("SELECT * FROM usuarios WHERE id=? AND nombre=?");
-            pst.setInt(1,id);
-            pst.setString(2,nombre);
+            pst = con.prepareStatement("SELECT * FROM empleados WHERE correo=? AND password=?");
+            pst.setString(1,correo);
+            pst.setString(2,password);
             rs  = pst.executeQuery();
 
             while(rs.next()){
-                empleado = new Empleado();
+
                 empleado.setId(rs.getInt("id"));
                 empleado.setNombre(rs.getString("nombre"));
-                //  usuario.setCorreo(rs.getString("correo"));
-                //  usuario.setPassword(rs.getString("password"));
 
             }
         }catch (Exception e){

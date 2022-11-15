@@ -1,22 +1,25 @@
 package co.uceva.edu.base.models;
 public class Empleado {
     private int id;
-    private String nombre;
-    private String departamento;
+    private String nombre,departamento,correo,password;
     private long salario;
 
-    public Empleado(int id, String nombre, String departamento, long salario) {
+    public Empleado(int id, String nombre, String departamento, long salario,String correo,String password) {
         this.id = id;
         this.nombre = nombre;
         this.departamento = departamento;
         this.salario = salario;
+        this.correo=correo;
+        this.password=password;
     }
 
     public Empleado() {
         this.id = 0;
-        this.nombre = "nombre";
-        this.departamento = "departamento";
+        this.nombre = "";
+        this.departamento = "";
         this.salario = 0;
+        this.password="";
+        this.correo="";
     }
 
     public int getId() {
@@ -52,4 +55,19 @@ public class Empleado {
     }
 
 
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }

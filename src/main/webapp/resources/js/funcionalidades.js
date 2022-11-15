@@ -2,36 +2,6 @@ inflacion=0.12;
 interes=0.19;
 miles = new Intl.NumberFormat('es-MX');
 
-
-function crear(){
-p = document.createElement("div");
-p.classList.add("packcompra");
-p.textContent=b+"";
-document.querySelector("#paquetecontenedor").appendChild(p);
-}
-
-function registrarPaquete(){
- idCreador = document.getElementById("identificacionCreadora");
- descripcion = document.getElementById("descripcionCreado");
- console.log(idCreador.value + " " + descripcion.value);
-/*
- p = document.createElement("div");
- p.classList.add("packcompra");
- p.textContent=descripcion+"";
- parr= document.createElement("p");
- parr.textContent=descripcion+"";
- p.appendChild(parr);
- document.querySelector("#paqueteContenedorSolitario").appendChild(p);*/
-}
-
-/*
-function divide(){
-identify="24_53_12_55_990"
-partes = identify.split("_");
-alert(partes[0]);
-}
-*/
-
 function amortizacion(precio,periodo){
 n=periodo*-1;
 
@@ -40,7 +10,7 @@ anualidad = precio*((interesReal/(1-((1+interesReal)**n))));
 anualidaDecimal = anualidad.toFixed(2);
 anualidadConMiles = miles.format(anualidaDecimal);
 
-alert("\nPRECIO DEL PAQUETE: "+miles.format(precio) + "\nCUOTAS: $ " + anualidadConMiles+ "\nPERIODO: " +periodo +" meses");
+alert("\nPRECIO DEL PAQUETE: "+miles.format(precio) + "\nCUOTAS MENSUALES: $ " + anualidadConMiles+ "\nPERIODO DE PAGO: " +"DURANTE "+periodo +" meses");
 }
 
 function seleccion(identify){
@@ -142,9 +112,118 @@ function seleccion(identify){
     }
 
     var sumatoria=x*50000 + y*100000 + z*120000 + a*20000 + b*15000;
-    precio =sumatoria;
+    precio = sumatoria;
     alert("$ "+miles.format(precio) );
    
 }
 
+function error(){
+    alert("error comprarndo el paquete  vuelva a autenticarse");
+}
+
+/*
+function selection(){
+    partes = document.getElementById("puntosVisita").textContent.split("_");
+
+    xVisitas= partes.length;
+    yDias=parseInt(document.getElementById("diasD").textContent);
+    zNoches=parseInt(document.getElementById("diasD").textContent);
+    aDesayunos=document.getElementById("diasD").textContent
+
+    switch (xVisitas) {
+        case 1: x=1
+            break;
+        case 2: x=2
+            break;
+        case 3: x=3
+            break;
+        case 4: x=4
+            break;
+        case 5: x=5
+            break;
+        case 6: x=6
+            break;
+        case 7: x=7
+            break;
+        case 8: x=8
+            break;
+        case 9: x=9
+            break;
+        case 10: x=10
+            break;
+        case 11: x=11
+            break;
+    }
+
+    switch (yDias) {
+        case 1: y=1
+            break;
+        case 2: y=2
+            break;
+        case 3: y=3
+            break;
+        case 4: y=4
+            break;
+        case 5: y=5
+            break;
+        case 6: y=6
+            break;
+        case 7: y=7
+            break;
+        case 8: y=8
+            break;
+        case 9: y=9
+            break;
+        case 10: y=10
+            break;
+        case 11: y=11
+            break;
+    }
+
+    switch (zNoches) {
+        case 1: z=1
+            break;
+        case 2: z=2
+            break;
+        case 3: z=3
+            break;
+        case 4: z=4
+            break;
+        case 5: z=5
+            break;
+        case 6: z=6
+            break;
+        case 7: z=7
+            break;
+        case 8: z=8
+            break;
+        case 9: z=9
+            break;
+        case 10: z=10
+            break;
+        case 11: z=11
+            break;
+    }
+
+    switch (aDesayunos) {
+        case 0: a=0
+            break;
+        case 1: a=1
+            break;
+
+    }
+
+    switch (bAlmuerzos) {
+        case 0: b=0
+            break;
+        case 1: b=1
+            break;
+    }
+
+    var sumatoria=x*50000 + y*100000 + z*120000 + a*20000 + b*15000;
+    precio = sumatoria;
+    alert("$ "+miles.format(precio) );
+
+}
+*/
 

@@ -24,6 +24,8 @@
                     <li class="menu-principal__item"><a href="index.xhtml">INICIO</a></li>
                     <li class="menu-principal__item"><a href="acceder.xhtml">ACCEDER</a></li>
                     <li class="menu-principal__item"><a href="acerca.xhtml">INFORMACIÓN</a></li>
+                    <li> <h:inputText size="10" value="#{usuarioBean.usuarioAutentico.nombre}" disabled="true" /> </li>
+                    <li> <h:form><h:commandButton action="#{usuarioBean.desautenticar()}" value="exit" ></h:commandButton></h:form></li>
                 </ul>
             </nav>
         </header>
@@ -33,60 +35,59 @@
         <div class="selectores">
         <h1 class="tituloprincipal" >Elija una de nuestras opciones de viaje</h1>
         <div class="contenedorpacks" id="paqueteContenedorSolitario">
-            
-            <div class="packcompra"  id="0001" >
-                <p>Este paquete le ofrece todo lo que 
-                    una persona de espiritu salvaje espera, 
-                    enfrentese y conviva con la naturaleza y
-                    la belleza de la selva.<br/><br/>
-                    Puntos de Visita: 1,9.<br/>
-                    Duracion: 3 dias y 2 noches.<br/>
-                    Almuerzos: si.<br/>
-                    Desayunos: No.<br/>
-                    Estado: activo.<br/>
-                    Costo: $ 660.000.<br/>
-                </p>
-                <div>
-                    <button onclick="seleccion('02_03_02_01_00')" >COMPRA DIRECTA</button>
-                    <button disabled="disabled">RESERVAR</button>
-                    <button onclick="amortizacion(660000,6)">COMPRAR A CREDITO (6 meses)</button>
-                </div>
-            </div>
-            <div class="packcompra" id="0002">
-                <p>Paquete diseñado para aquellos que quieren una aventura 
-                    calida y soleada en egipto.<br/><br/>
-                    Puntos de Visita: 1,6,9.<br/>
-                    Duracion: 2 dias y 3 noches.<br/>
-                    Almuerzos: si.<br/>
-                    Desayunos: si.<br/>
-                    Estado: activo.<br/>
-                    Costo: $ 745.000.<br/>
-                </p>
-                <div>
-                    <button onclick="seleccion('03_02_03_01_01')" >COMPRA DIRECTA</button>
-                    <button disabled="disabled">RESERVAR</button>
-                    <button onclick="amortizacion(745000,12)">COMPRAR A CREDITO (12 meses)</button>
-                </div>
-                
-            </div>
-            <div class="packcompra" >
-                <p>si lo que quieres es un fin de semana relajante en 
-                    la playa, este paquete es para ti.<br/><br/>
-                    Puntos de Visita: 5,11,15.<br/>
-                    Duracion: 2 dias y 1 noche.<br/>
-                    Almuerzos: si.<br/>
-                    Desayunos: si.<br/>
-                    Estado: activo.<br/>
-                    Costo: $ 505000 .<br/>
-                </p>
-                <div>
-                    <button onclick="seleccion('03_02_01_01_01')" >COMPRA DIRECTA</button>
-                    <button  onclick="" disabled="disabled">RESERVAR</button>
-                    <button onclick="amortizacion(505000,18)">COMPRAR A CREDITO (1 año y medio)</button>
-                </div>
-            </div>
-            
-          
+            <h:form id="formdatos">
+            <p:dataTable id="tbldatos" value="#{packBean.listarXTipo('solitario')}" var="paquete">
+                <p:column headerText="DESCRIPCION">
+                    <h:outputText value="#{paquete.descripcion}"/>
+                </p:column>
+                <p:column headerText="PUNTOS DE VISITA">
+                    <h:outputText value="#{paquete.puntosVisita}"/>
+                </p:column>
+                <p:column headerText="COMIDAS INCLUIDAS">
+                    <h:outputText value="#{paquete.sN}"/>
+                </p:column>
+                <p:column headerText="DIAS">
+                    <h:outputText value="#{paquete.dias}"/>
+                </p:column>
+                <p:column headerText="NOCHES">
+                    <h:outputText value="#{paquete.noches}"/>
+                </p:column>
+                <p:column headerText="PRECIO">
+                    <h:outputText value="#{paquete.precio}"/>
+                </p:column>
+
+                <p:column headerText="#{msgs['tradCentroAcciones']}">
+                    <p:commandButton styleClass="ui-button-danger"
+                                     value="comprar este paquete"
+                                     action="#{usuarioBean.comprarPack(paquete.id)}"
+                                     update="formdatos:tbldatos">
+                        <p:confirm header="comprar!" message="comprar este paquete?"></p:confirm>
+                    </p:commandButton>
+                    <br/>
+                    <p:commandButton styleClass="ui-button-primaryr"
+                                     value="comprar paquete a credito!"
+                                     action="#"
+                                     update="formdatos:tbldatos">
+                    </p:commandButton><br/>
+
+                   <p:commandButton onclick="amortizacion('#{paquete.precio}',12)"
+                                    value="detalles del paquete a credito (12 meses)"
+                                    styleClass="ui-button-outlined">
+                   </p:commandButton>
+
+
+                </p:column>
+
+
+            </p:dataTable>
+
+
+            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" width=" 350">
+                <p:commandButton value="NO" type="button" styleClass="ui-confirmdialog-no ui-button-flat"></p:commandButton>
+                <p:commandButton value="SISAS!" type="button" styleClass="ui-confirmdialog-yes"></p:commandButton>
+            </p:confirmDialog>
+            </h:form>
+
         </div>
     </div>
 
@@ -137,8 +138,8 @@
               <input class="botonesimple" type="submit" value="Enviar" />
           </form> 
         </div>
-         
-<br/>
+        <br/>
+
 <a class="menu-principal__item" href="#sup">ir arriba!</a>
     </main>
     <script src="resources/js/funcionalidades.js"></script>

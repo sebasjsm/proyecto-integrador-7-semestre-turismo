@@ -6,7 +6,7 @@
   background-color: rgb(255, 3, 192);
   border-radius: 10px;
   /*width: 100px;*/
-  height: 30px;
+  height: 40px;
   padding-top: 0.7%;
 }
 
@@ -58,6 +58,40 @@
 #familiarpack{
   background-image: url(../imagenes/familiar.png);
 }
+
+#animalespack{
+  background-image: url(../imagenes/animales.jpg);
+}
+#naturalezapack{
+  background-image: url(../imagenes/naturaleza.jpg);
+}
+
+#extremopack{
+  background-image: url(../imagenes/extremo.jpg);
+}
+
+#deportepack{
+  background-image: url(../imagenes/deporte.jpg);
+}
+#relajarsepack{
+  background-image: url(../imagenes/relajarse.jpg);
+}
+
+#estudiantilpack{
+  background-image: url(../imagenes/estudiantil.jpg);
+}
+
+#gastronomicopack{
+  background-image: url(../imagenes/gastronomico.jpg);
+}
+#culturalpack{
+  background-image: url(../imagenes/cultural.png);
+}
+
+#tourpack{
+  background-image: url(../imagenes/tour.png);
+}
+
 
 
 .tituloprincipal {

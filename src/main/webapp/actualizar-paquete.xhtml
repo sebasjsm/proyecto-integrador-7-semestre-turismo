@@ -25,45 +25,43 @@
                     <li class="menu-principal__item"><a href="listar-usuarios.xhtml">LISTAR USUARIOS</a></li>
                     <li class="menu-principal__item"><a href="listar-paquetes.xhtml">LISTAR PAQUETES</a></li>
                     <li class="menu-principal__item"><a href="acerca.xhtml">INFORMACIÓN</a></li>
-                    <li> <h:inputText size="10" value="#{empleadoBean.empleadoAutentico.nombre}" disabled="true" /> </li>
-                    <li> <h:form><h:commandButton action="#{empleadoBean.desautenticar()}" value="exit" ></h:commandButton></h:form></li>
                 </ul>
             </nav>
         </header>
-        
 
-            <h1 class="tituloprincipal"  >CENTRO DE CREACION DE PAQUETES TURISMO S.A.</h1>
 
-            <div class="packacerca"/>
-            <h:form class="formulario">
-                <h1 class="tituloprincipal" id="sup">Bienvenid@ que paquete piensa crear?</h1>
+        <h1 class="tituloprincipal"> CENTRO DE MODIFICACION DE PAQUETES TURISMO S.A.</h1>
 
-                <label  class="form-label" for="descripcionPaquete">Ingrese la descripcion del paquete<br/> </label>
-                <p:inputTextarea id="descripcionPaquete"  cols="52" rows="8" value="#{packBean.paquete.descripcion}"/><br/>
+        <div class="packacerca"/>
+        <h:form class="formulario">
+            <h1 class="tituloprincipal" id="sup"> modifique los campos del paquete</h1>
 
-                <label for="puntosVisita">Ingrese los puntos de visita (ingrese el numero del punto y separelos por "_")</label><br/>
-                <p:inputText id="puntosVisita"  size="50" value="#{packBean.paquete.puntosVisita}"/><br/>
+            <label  class="form-label" for="descripcionPaquete">Ingrese la descripcion del paquete<br/> </label>
+            <p:inputTextarea id="descripcionPaquete"  cols="52" rows="8" value="#{packBean.paquete.descripcion}"/><br/>
 
-                <label for="diasD">Dias de duracion<br/> </label>
-                <p:inputNumber id="diasD" size="50" value="#{packBean.paquete.dias}" /><br/>
+            <label for="puntosVisita">Ingrese los puntos de visita (ingrese el numero del punto y separelos por "_")</label><br/>
+            <p:inputText id="puntosVisita"  size="50" value="#{packBean.paquete.puntosVisita}"/><br/>
 
-                <label for="nochesD">Noches de duracion<br/> </label>
-                <p:inputNumber id="nochesD"  size="50" value="#{packBean.paquete.noches}" /><br/>
+            <label for="diasD">Dias de duracion<br/> </label>
+            <p:inputNumber id="diasD" size="50" value="#{packBean.paquete.dias}" /><br/>
 
-                <label for="nochesD">Tiene Comidas? (1=si / 0 = no)<br/> </label>
-                <p:inputNumber id="comidasSN"  size="50" value="#{packBean.paquete.comidas}" maxlength="1" maxValue="1"/><br/>
+            <label for="nochesD">Noches de duracion<br/> </label>
+            <p:inputNumber id="nochesD"  size="50" value="#{packBean.paquete.noches}" /><br/>
 
-                <label for="diasD">ingrese el tipo de paquete (solitario,familiar.. etc<br/></label>
-                <p:inputText id="tipo"  size="50" value="#{packBean.paquete.tipo}"/><br/>
+            <label for="nochesD">Tiene Comidas? (1=si / 0 = no)<br/> </label>
+            <p:inputNumber id="comidasSN"  size="50" value="#{packBean.paquete.comidas}" maxlength="1" maxValue="1"/><br/>
 
-                <label for="precio">precio actual<br/></label>
-                <h:inputText id="precio"  size="50" value="#{packBean.paquete.precio}" disabled="true"/><br/><br/>
+            <label for="diasD">ingrese el tipo de paquete (solitario,familiar.. etc<br/></label>
+            <p:inputText id="tipo"  size="50" value="#{packBean.paquete.tipo}"/><br/>
 
-                <div class="mb-3">
-                    <p:commandButton styleClass="ui-button-primary" value="Guardar" action="#{packBean.crear(empleadoBean.empleadoAutentico.id)}"></p:commandButton>
-                    <p:commandButton styleClass="ui-button-primary" value="conocer precio actual" action="#{packBean.conocerPrecio()}"></p:commandButton>
-                    <p:commandButton styleClass="ui-button-primary" value="limpiar celdas" action="#{packBean.limpiar()}"></p:commandButton>
-                </div>
+            <label for="precio">precio actual<br/></label>
+            <h:inputText id="precio"  size="50" value="#{packBean.paquete.precio}" disabled="true"/><br/><br/>
+
+            <div class="mb-3">
+                <p:commandButton styleClass="ui-button-primary" value="Guardar" action="#{packBean.actualizarPack()}"></p:commandButton>
+                <p:commandButton styleClass="ui-button-primary" value="conocer precio actual" action="#{packBean.conocerPrecio()}"></p:commandButton>
+                <p:commandButton styleClass="ui-button-primary" value="limpiar celdas" action="#{packBean.limpiar()}"></p:commandButton>
+            </div>
 
         </h:form>
 
@@ -111,8 +109,8 @@
                 <li>animales</li>
             </ul>
         </div>
-         
-<a href="#sup">arriba!</a>
+
+        <a href="#sup">arriba!</a>
     </main>
     <script src="resources/js/funcionalidades.js"></script>
 </h:body>

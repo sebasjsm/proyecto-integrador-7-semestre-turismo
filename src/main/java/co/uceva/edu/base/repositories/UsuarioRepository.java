@@ -20,10 +20,13 @@ public class UsuarioRepository {
             rs = st.executeQuery("SELECT * FROM usuarios");
             while(rs.next()){
                 Usuario emp = new Usuario();
-                emp.setId(rs.getInt("id"));
+                emp.setId(rs.getString("id"));
                 emp.setNombre(rs.getString("nombre"));
                 emp.setCorreo(rs.getString("correo"));
-                emp.setPassword(rs.getString("password"));
+                emp.setNacimiento(rs.getString("fecha_nacimiento"));
+                emp.setTelefono(rs.getLong("telefono"));
+                emp.setOtroNombre(rs.getString("otro_nombre"));
+                emp.setOtroTelefono(rs.getLong("otro_telefono"));
                 listadousuario.add(emp);
             }
         } catch (SQLException e) {
@@ -46,11 +49,15 @@ public class UsuarioRepository {
         PreparedStatement pst =null;
         try{
             con = ConexionBaseDatos.getConnection();
-            pst = con.prepareStatement("INSERT INTO usuarios (id,nombre,correo,password) VALUES(?,?,?,?)");
-            pst.setInt(1,usuario.getId());
+            pst = con.prepareStatement("INSERT INTO usuarios (id,nombre,correo,fecha_nacimiento,telefono,otro_nombre,otro_telefono,id_paquete) VALUES(?,?,?,?,?,?,?,?)");
+            pst.setString(1,usuario.getId());
             pst.setString(2,usuario.getNombre());
             pst.setString(3,usuario.getCorreo());
-            pst.setString(4, usuario.getPassword());
+            pst.setString(4, usuario.getNacimiento());
+            pst.setLong(5,usuario.getTelefono());
+            pst.setString(6, usuario.getOtroNombre());
+            pst.setLong(7,usuario.getOtroTelefono());
+            pst.setString(8, usuario.getIdPack());
             pst.executeUpdate();
 
         }catch (Exception e){
@@ -72,7 +79,7 @@ public class UsuarioRepository {
 
 
 
-    public List<Usuario> consulta(Integer id){
+    public List<Usuario> consulta(String id){
         Connection con=null;
         PreparedStatement pst =null;
         ResultSet rs =null;
@@ -80,14 +87,17 @@ public class UsuarioRepository {
         try{
             con = ConexionBaseDatos.getConnection();
             pst = con.prepareStatement("SELECT * FROM usuarios WHERE id=?");
-            pst.setInt(1,id);
+            pst.setString(1,id);
             rs  = pst.executeQuery();
             while(rs.next()){
                 Usuario usuario = new Usuario();
-                usuario.setId(rs.getInt("id"));
+                usuario.setId(rs.getString("id"));
                 usuario.setNombre(rs.getString("nombre"));
                 usuario.setCorreo(rs.getString("correo"));
-                usuario.setPassword(rs.getString("password"));
+                usuario.setNacimiento(rs.getString("fecha_nacimiento"));
+                usuario.setTelefono(rs.getLong("telefono"));
+                usuario.setOtroNombre(rs.getString("otro_nombre"));
+                usuario.setOtroTelefono(rs.getLong("otro_telefono"));
                 listadousuario.add(usuario);
             }
 
@@ -108,17 +118,22 @@ public class UsuarioRepository {
         return listadousuario;
     }
 
+
+
     public boolean actualizarUsuario(Usuario usuario){
         Connection con =null;
         PreparedStatement st =null;
 
         try {
             con = ConexionBaseDatos.getConnection();
-            st = con.prepareStatement("UPDATE usuarios SET nombre=? , password=?, correo=? WHERE id=?");
-            st.setString(1, usuario.getNombre());
-            st.setString(2, usuario.getPassword());
-            st.setString(3, usuario.getCorreo());
-            st.setInt(4, usuario.getId());
+            st = con.prepareStatement("UPDATE usuarios SET nombre=? , correo=?, fecha_nacimiento=?, telefono=?, otro_nombre=?, otro_telefono=? WHERE id=?");
+            st.setString(1,usuario.getNombre());
+            st.setString(2,usuario.getCorreo());
+            st.setString(3, usuario.getNacimiento());
+            st.setLong(4,usuario.getTelefono());
+            st.setString(5, usuario.getOtroNombre());
+            st.setLong(6,usuario.getOtroTelefono());
+            st.setString(7,usuario.getId());
             st.executeUpdate();
 
         } catch (SQLException e) {
@@ -138,13 +153,13 @@ public class UsuarioRepository {
         return true;
     }//fin de la funcion de actualizado
 
-    public boolean eliminarUsuario(int identify){
+    public boolean eliminarUsuario(String identify){
         Connection con =null;
         PreparedStatement st =null;
         try {
             con = ConexionBaseDatos.getConnection();
             st = con.prepareStatement("DELETE FROM usuarios WHERE id=?");
-            st.setInt(1, identify);
+            st.setString(1, identify);
             st.executeUpdate();
 
         } catch (SQLException e) {
@@ -167,25 +182,27 @@ public class UsuarioRepository {
 
 
 
-    public Usuario autenticarUsuario (String correo,String password){
+    public Usuario autenticarUsuario (String correo,String id){
         Connection con=null;
         PreparedStatement pst =null;
         ResultSet rs =null;
         Usuario usuario =new Usuario();
         try{
             con = ConexionBaseDatos.getConnection();
-            pst = con.prepareStatement("SELECT * FROM usuarios WHERE correo=? AND password=?");
+            pst = con.prepareStatement("SELECT * FROM usuarios WHERE correo=? AND id=?");
             pst.setString(1,correo);
-            pst.setString(2,password);
+            pst.setString(2,id);
             rs  = pst.executeQuery();
 
             while(rs.next()){
                 usuario = new Usuario();
-                usuario.setId(rs.getInt("id"));
+                usuario.setId(rs.getString("id"));
                 usuario.setNombre(rs.getString("nombre"));
-                //  usuario.setCorreo(rs.getString("correo"));
-                //  usuario.setPassword(rs.getString("password"));
-
+                usuario.setCorreo(rs.getString("correo"));
+                usuario.setNacimiento(rs.getString("fecha_nacimiento"));
+                usuario.setTelefono(rs.getLong("telefono"));
+                usuario.setOtroNombre(rs.getString("otro_nombre"));
+                usuario.setOtroTelefono(rs.getLong("otro_telefono"));
             }
 
 
@@ -206,4 +223,39 @@ public class UsuarioRepository {
 
         return usuario;
     }//fin de la funcion de autenticacion
+
+
+    public boolean nuevaCompra(Usuario usuario){
+        Connection con=null;
+        PreparedStatement pst =null;
+        try{
+            con = ConexionBaseDatos.getConnection();
+            pst = con.prepareStatement("INSERT INTO usuarios (id,nombre,correo,fecha_nacimiento,telefono,otro_nombre,otro_telefono,id_paquete) VALUES(?,?,?,?,?,?,?,?)");
+            pst.setString(1,usuario.getId());
+            pst.setString(2,usuario.getNombre());
+            pst.setString(3,usuario.getCorreo());
+            pst.setString(4, usuario.getNacimiento());
+            pst.setLong(5,usuario.getTelefono());
+            pst.setString(6, usuario.getOtroNombre());
+            pst.setLong(7,usuario.getOtroTelefono());
+            pst.setString(8, usuario.getIdPack());
+            pst.executeUpdate();
+
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }finally {
+            try {
+                pst.close();
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return false;
+            }
+
+        }
+        return true;
+
+    }// fin de la funcion crear
+
 }

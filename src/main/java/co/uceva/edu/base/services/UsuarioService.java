@@ -30,16 +30,19 @@ public class UsuarioService {
     }// TODO hacer validacion por id,correo
 
 
-    public List<Usuario> consultarUsuario (int id ){
+    public List<Usuario> consultarUsuario (String id ){
         return usuarioRepository.consulta(id);
     }
 
+    public void nuevaCompra(Usuario usuarioNuevo){
+        usuarioRepository.nuevaCompra(usuarioNuevo);
+    }
 
     public boolean actualizarUsuario(Usuario usuario) {
         return usuarioRepository.actualizarUsuario(usuario);
     }
 
-    public boolean eliminarUsuario(int identificacion) {
+    public boolean eliminarUsuario(String identificacion) {
         return usuarioRepository.eliminarUsuario(identificacion);
     }
 }

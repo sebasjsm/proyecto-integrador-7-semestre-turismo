@@ -12,9 +12,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>VIAJES Y TURISMO S.A</title>
-    <link rel="stylesheet" href="resources/css/design.css"/>
+
     <link href="https://fonts.cdnfonts.com/css/miami" rel="stylesheet"/>
     <link href="https://fonts.cdnfonts.com/css/engender-mod-font" rel="stylesheet"/>
+    <link rel="stylesheet" href="resources/css/design.css"/>
 </h:head>
 <h:body class="cuerpo">
     <main>
@@ -24,6 +25,8 @@
                     <li class="menu-principal__item"><a href="index.xhtml">INICIO(0)</a></li>
                     <li class="menu-principal__item"><a href="acceder.xhtml">ACCEDER</a></li>
                     <li class="menu-principal__item"><a href="acerca.xhtml">INFORMACIÓN</a></li>
+                    <li> <h:inputText size="10" value="#{usuarioBean.usuarioAutentico.nombre}" disabled="true" /> </li>
+                    <li> <h:form><h:commandButton action="#{usuarioBean.desautenticar()}" value="exit" ></h:commandButton></h:form></li>
                 </ul>
             </nav>
         </header>
@@ -49,47 +52,47 @@
                 <p>paquetes familiares</p>
             </div></a>
 
-            <a href="#" class="nosub">
+            <a href="tour-pack.xhtml" class="nosub">
             <div class="pack" id="tour">
                 <p>paquetes tour grupal</p>
             </div></a>
 
-            <a href="#" class="nosub">
+            <a href="cultural-pack.xhtml" class="nosub">
             <div class="pack" id="cultural">
                 <p>paquetes culturales</p>
             </div></a>
 
-            <a href="#" class="nosub">
+            <a href="gastronomico-pack.xhtml" class="nosub">
             <div class="pack" id="gastronomico">
                 <p>paquetes gastronomicos</p>
             </div></a>
 
-            <a href="#" class="nosub">
+            <a href="estudiantil-pack.xhtml" class="nosub">
             <div class="pack" id="estudiantil">
             <p>paquetes para estudiantes - educativo</p>
             </div></a>
 
-            <a href="#" class="nosub">
+            <a href="relajarse-pack.xhtml" class="nosub">
             <div class="pack" id="relajarse">
              <p>paquetes para relajarse</p>
             </div></a>
 
-            <a href="#" class="nosub">
+            <a href="deporte-pack.xhtml" class="nosub">
             <div class="pack" id="deporte">
                 <p>paquetes de deporte</p>
             </div></a>
 
-            <a href="#" class="nosub">
+            <a href="extremo-pack.xhtml" class="nosub">
             <div class="pack" id="extremo">
                 <p>paquetes de deporte extremo</p>
             </div></a>
 
-            <a href="#" class="nosub">
+            <a href="naturaleza-pack.xhtml" class="nosub">
             <div class="pack" id="naturaleza">
                 <p>paquetes naturaleza</p>
             </div></a>
 
-            <a href="#" class="nosub">
+            <a href="animales-pack.xhtml" class="nosub">
             <div class="pack" id="animales">
                 <p>paquetes animales</p>
             </div></a>

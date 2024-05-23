@@ -12,7 +12,7 @@ public class Empleado {
         this.correo=correo;
         this.password=password;
     }
-
+/*empleado*/
     public Empleado() {
         this.id = 0;
         this.nombre = "";
